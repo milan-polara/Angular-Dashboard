@@ -1,0 +1,84 @@
+<div class="grid dashboard">
+    <div
+        class="card mx-2 flex lg:flex-row md:flex-row sm:flex-column flex-column height-100"
+    >
+        <div class="lg:col-4 md:col-6 flex justify-content-center">
+            <img
+                src="assets/images/Screen/Group 1707478660.svg"
+                alt="banner img"
+                width="228px"
+            />
+        </div>
+        <div class="lg:col-6 md:col-6">
+            <div class="headerFont mt-4">Welcome to the Dashboard</div>
+            <div class="font-20 mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit
+                quasi autem provident nostrum quos quaerat iusto recusandae
+                dolor! Voluptatum vero consequuntur eum esse! Quia officiis
+                ipsam ad sint in molestiae!
+            </div>
+        </div>
+    </div>
+    <ng-container *ngFor="let item of shortCardChart">
+        <div class="col-12 lg:col-6 md:col-6 xl:col-3">
+            <div class="card col-12 h-10rem flex flex-wrap">
+                <div class="salesReport font-20 col-4 flex align-items-center">
+                    {{ item.text }}
+                </div>
+                <div class="col-8 flex justify-content-end">
+                    <p-chart
+                        [type]="item.type"
+                        [data]="item.data"
+                        [options]="item.options"
+                        [height]="item.height"
+                        [width]="item.width"
+                        responsive="true"
+                    ></p-chart>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <div class="col-12 lg:col-6">
+        <div class="card height-100">
+            <!-- <div class="card-header">
+                <h5>{{ "HOME.BARCHART" | translate }}</h5>
+            </div> -->
+            <ul class="widget-list">
+                <app-output-graph [type]="'column'"></app-output-graph>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-12 lg:col-6">
+        <div class="card height-100">
+            <!-- <div class="card-header">
+                <h5>{{ "HOME.LINECHART" | translate }}</h5>
+            </div> -->
+            <ul class="widget-list">
+                <app-output-graph [type]="'line'"></app-output-graph>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-12 lg:col-6">
+        <div class="card height-100">
+            <!-- <div class="card-header">
+                <h5>{{ "HOME.PIECHART" | translate }}</h5>
+            </div> -->
+            <div class="widget-chat">
+                <app-output-graph [type]="'pie'"></app-output-graph>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 lg:col-6">
+        <div class="card height-100">
+            <!-- <div class="card-header">
+                <h5>{{ "HOME.SCATTERPLOT" | translate }}</h5>
+            </div> -->
+            <div class="widget-chat">
+                <app-output-graph [type]="'scatter'"></app-output-graph>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,151 @@
+/* Add your customizations of layout here */
+.custom-input {
+    height: 50px;
+}
+
+.wizard-body .wizard-wrapper .wizard-content .wizard-card {
+
+    width: 40.33%;
+
+}
+
+
+@media (max-width: 1024px){
+.wizard-body .wizard-wrapper .wizard-content .wizard-card {
+    width: 90%;
+}
+}
+.loader {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10000;
+    top: 0;
+    left: 0;
+}
+.select-style {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: #add8e6;
+    color: black;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+    height: 30px;
+    width: 85px;
+  }
+
+.detail-box{
+    background-color: rgba(255,255,255,0.8);
+}
+.bottom0{
+    bottom: 0px;
+}
+@media (max-width: 780px) {
+    .bottom0{
+        bottom: -210px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.headerFont {
+    font-size: 28px;
+    color: #0066f9;
+}
+.font-20 {
+    font-size: 20px;
+    line-height: 1.5em;
+}
+
+.layout-topbar-blue .layout-topbar {
+    color: #ffffff;
+    
+    background-color: #add8e6;
+}
+.layout-topbar-blue .layout-topbar .layout-topbar-left {
+    background: none;
+}
+
+
+
+
+.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > ul {
+    // background-color: #fdfeff;
+    background: none;
+}
+.layout-topbar-blue
+    .layout-topbar
+    .layout-topbar-right
+    .layout-topbar-actions-left
+    .layout-megamenu.p-megamenu
+    .p-megamenu-root-list
+    > .p-menuitem
+    > .p-menuitem-link
+    .p-menuitem-text,
+.layout-topbar-blue
+    .layout-topbar
+    .layout-topbar-right
+    .layout-topbar-actions-left
+    .layout-megamenu.p-megamenu
+    .p-megamenu-root-list
+    > .p-menuitem
+    > .p-menuitem-link
+    .p-menuitem-icon,
+.layout-topbar-blue
+    .layout-topbar
+    .layout-topbar-right
+    .layout-topbar-actions-left
+    .layout-megamenu.p-megamenu
+    .p-megamenu-root-list
+    > .p-menuitem
+    > .p-menuitem-link
+    .p-submenu-icon {
+    color: black;
+}
+.pi-user:before {
+    content: "\e939";
+    color: black;
+}
+.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > div .layout-menuitem-text {
+    color: black;
+}
+.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu li a {
+    color: black;
+}
+.pi-home:before {
+    content: "\e925";
+    color: black;
+}
+.pi-chart-bar:before {
+    content: "\e96d";
+    color: black;
+}
+.pi-pencil:before {
+    content: "\e942";
+    color: black;
+}
+.pi-th-large:before {
+    content: "\e918";
+    color: black;
+}
+.pi-angle-down:before {
+    content: "\e930";
+    color: black;
+}
+.pi-ellipsis-v:before {
+    content: "\e950";
+    color: black;
+}
+.pi-users:before {
+    content: "\e941";
+    color: black;
+}
+.pi-shopping-bag:before {
+    content: "\e9e5";
+    color: black;
+}
+.layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action, .layout-menu-light .menu-wrapper .layout-menu-container .layout-inline-menu .layout-inline-menu-action-panel .layout-inline-menu-action-item {
+    /* color: #515c66; */
+    color: black;
+}

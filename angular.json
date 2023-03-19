@@ -1,0 +1,139 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "dashboard-cli": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/dashboard",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "tsconfig.app.json",
+                        "buildOptimizer": true,
+                        "optimization": true,
+                        "vendorChunk": false,
+                        "aot": true,
+                        "extractLicenses": false,
+                        "sourceMap": false,
+                        "namedChunks": false,
+                        "assets": ["src/assets", "src/manifest.webmanifest"],
+                        "serviceWorker": true,
+                        "styles": [
+                            "src/styles.scss",
+                            "node_modules/primeicons/primeicons.css",
+                            "node_modules/primeng/resources/primeng.min.css",
+                            "node_modules/primeflex/primeflex.scss",
+                            "node_modules/prismjs/themes/prism-coy.css"
+                        ],
+                        "scripts": [
+                            "node_modules/chart.js/dist/chart.js",
+                            "node_modules/prismjs/prism.js",
+                            "node_modules/prismjs/components/prism-typescript.js"
+                        ],
+                        "ngswConfigPath": "ngsw-config.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "3mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        },
+                        "demo": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.demo.ts"
+                                }
+                            ]
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "dashboard-cli:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "dashboard-cli:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "dashboard-cli:build:development"
+                        },
+                        "demo": {
+                            "browserTarget": "dashboard-cli:build:demo"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "dashboard-cli:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "src/test.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "tsconfig.spec.json",
+                        "karmaConfig": "karma.conf.js",
+                        "scripts": [],
+                        "styles": ["src/styles.scss"],
+                        "assets": ["src/assets", "src/upload.php"]
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json"],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                }
+            }
+        }
+    },
+    "defaultProject": "dashboard-cli",
+    "cli": {
+        "analytics": false
+    }
+}

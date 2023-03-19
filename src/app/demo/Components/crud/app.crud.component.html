@@ -1,0 +1,504 @@
+<div class="grid">
+    <div class="col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <button
+                        pButton
+                        pRipple
+                        [disabled]="!isAdmin"
+                        [label]="'HOME.NEW' | translate"
+                        icon="pi pi-plus"
+                        class="p-button-success mr-2 mb-2"
+                        (click)="openNew()"
+                    ></button>
+                </ng-template>
+            </p-toolbar>
+            <p-dataView
+                #dv
+                [value]="employes$ | async"
+                [paginator]="true"
+                [rows]="12"
+                filterBy="name"
+                [sortField]="sortField"
+                [sortOrder]="sortOrder"
+                layout="grid"
+                [rowsPerPageOptions]="[12, 25, 50]"
+            >
+                <ng-template pTemplate="header">
+                    <div
+                        class="flex flex-column md:flex-row md:justify-content-between"
+                    >
+                        <p-dropdown
+                            [options]="sortOptions"
+                            [(ngModel)]="sortKey"
+                            [placeholder]="'HOME.SORTBYPRICE' | translate"
+                            (onChange)="onSortChange($event)"
+                            styleClass="mb-2 md:mb-0"
+                        ></p-dropdown>
+                        <span class="p-input-icon-left mb-2 md:mb-0">
+                            <i class="pi pi-search"></i>
+                            <input
+                                type="search"
+                                pInputText
+                                [placeholder]="'HOME.SEARCHBYPNAME' | translate"
+                                (input)="dv.filter($event.target.value)"
+                            />
+                        </span>
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </ng-template>
+                <ng-template let-employe pTemplate="listItem">
+                    <div class="col-12 text-center flex lg:flex-row md:flex-row sm:flex-row flex-column py-2 ">
+                        <div class="lg:col-3 md:col-6 sm:col-6 flex xl:flex-row lg:flex-column md:flex-column sm:flex-column flex-column align-items-center lg:justify-content-around">
+                            <div class="product-list-item  list-image">
+                                <div class="flex">
+                                <img
+                                class="border-circle sm:mr-0"
+                                    [src]="employe.image"
+                                    width="75px"
+                                    height="75px"
+                                    [alt]="employe.name"
+                                />
+                                <i [ngClass]="employe.gender == 'Male' ? 'fa fa-mars' : 'fa fa-venus'" class="text-2xl -ml-4" ></i>
+                            </div>
+                            </div>
+                            <div class="">
+                                <div class="product-list-detail lg:my-0 md:my-2 sm:my-2 my-2">
+                                    <div class="product-name text-lg font-bold text-blue-500">
+                                        {{ employe.name }}
+                                    </div>
+                                    <div class="product-category text-base text-500 py-2">
+                                        <i
+                                                class="pi pi-tag product-category-icon text-base text-500"
+                                            ></i>
+                                        <span> {{
+                                            employe.category
+                                        }} </span>
+                                    </div>
+                                    <div class="product-name py-1">
+                                        <p class="m-0 text-base text-500">
+                                            <i class="fa fa-graduation-cap"></i>
+                                            <span> {{employe.qualification}} </span>
+                                            <span> | </span>
+                                            <i class="fa fa-cogs"></i>
+                                            <span> {{employe.experience}} </span>
+                                            <span> year </span>
+                                            <span> | </span>
+                                            <i class="fa fa-child" ></i>
+                                            <span> {{employe.dob | age}} </span>
+                                            <span> | </span>
+                                            <i class="fa fa-rupee"></i>
+                                            <span class=""> {{
+                                                employe.salary
+                                            }} </span>
+                                            <span> K </span>
+                                        </p>       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-9 md:col-6 sm:col-6  flex xl:flex-row lg:flex-column md:flex-column sm:flex-column flex-column  align-items-center">
+                            <div class="product-list-detail  lg:col-7 md:col-12 sm:col-12">
+                                <div class="product-description text-justify text-lg text-500 lg:my-0 md:my-2 sm:my-2 my-2">
+                                    {{ employe.description }}
+                                </div>
+                            </div>
+                            <div class="product-list-detail flex justify-content-center lg:col-3 md:col-12 sm:col-12">
+                                <div
+                                class=" product-skills text-base text-500  lg:my-0 md:my-2 sm:my-2 my-2"
+                            >
+                                {{ employe.skills }}
+                            </div>
+                            </div>
+                            <div class="buttons lg:col-2 md:col-12 sm:col-12">
+                                <button
+                                    pButton
+                                    pRipple
+                                    [disabled]="!isAdmin"
+                                    icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success mr-2"
+                                    (click)="editemploye(employe)"
+                                ></button>
+                                <button
+                                    pButton
+                                    pRipple
+                                    [disabled]="!isAdmin"
+                                    icon="pi pi-trash"
+                                    class="p-button-rounded p-button-warning"
+                                    (click)="deleteemploye(employe)"
+                                ></button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template let-employe pTemplate="gridItem">
+                    <div class="col-12 xl:col-3 lg:col-4 md:col-6 sm:col-6">
+                        <div class="product-grid-item p-3 card">
+                            <div class="product-grid-item-top align-items-center">
+                                  
+                                    <div class="product-name py-1">
+                                        
+                                        <p class="m-0 text-lg font-bold text-blue-500">{{ employe.name }}</p>
+                                       
+                                        <div class="my-1">
+                                            <i
+                                            class="pi pi-tag product-category-icon text-base text-500"
+                                        ></i>
+                                            <span class="m-0 text-base text-500 font-semibold"> {{employe.category}} </span>
+                                        </div>
+                                            <p class="my-1 text-base text-500"> 
+                                            <i class="fa fa-graduation-cap"></i>
+                                            <span> {{employe.qualification}} </span>
+                                            <span> | </span>
+                                            <i class="fa fa-cogs"></i>
+                                            <span> {{employe.experience}} </span>
+                                            <span> year </span>
+                                            <span> | </span>
+                                            <i class="fa fa-child" ></i>
+                                            <span> {{employe.dob | age}} </span>
+                                            <span> | </span>
+                                            <i class="fa fa-rupee"></i>
+                                            <span class=""> {{
+                                                employe.salary
+                                            }} </span>
+                                            <span> K </span>
+                                        </p>       
+                                    </div>
+                                    <div class="flex">  
+                                            <img
+                                            [src]="employe.image"
+                                            width="50px"
+                                            height="50px"
+                                            [alt]="employe.name"
+                                            class="border-circle"
+                                        />
+                                            <i [ngClass]="employe.gender == 'Male' ? 'fa fa-mars' : 'fa fa-venus'" class="text-2xl -ml-3" ></i>
+                                    </div>
+                            </div>
+                            <div class="product-description py-3">
+                                <span class="text-lg text-500">{{ employe.description }}</span>
+                            </div>
+                            <div class="product-skills py-1 flex flex-wrap">
+                                <span *ngFor="let skills of employe.skills;" 
+                                   class="surface-200 text-sm text-500 border-round m-1 py-2 px-2"
+                                    [pTooltip]="employe.skills"
+                                    tooltipPosition="bottom"
+                                    >{{ skills }}</span
+                                >
+                            </div>
+                            <div class="product-grid-item-bottom">
+                                <button
+                                    pButton
+                                    pRipple
+                                    [disabled]="!isAdmin"
+                                    icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success"
+                                    (click)="editemploye(employe)"
+                                ></button>
+                                <button
+                                    pButton
+                                    pRipple
+                                    [disabled]="!isAdmin"
+                                    icon="pi pi-trash"
+                                    class="p-button-rounded p-button-warning"
+                                    (click)="deleteemploye(employe)"
+                                ></button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
+        </div>
+
+        <p-dialog
+            [(visible)]="employeDailog"
+            [style]="{ width: '450px' , margin:'0px 10px' }"
+            [header]="'HOME.HEADER' | translate"
+            [modal]="true"
+            styleClass="p-fluid"
+        >
+            <ng-template pTemplate="content">
+                <form [formGroup]="employeeForm" (ngSubmit)="saveProduct()">
+                    <div class="field imageUploadDiv">
+                        <img
+                            class="imageFile"
+                            *ngIf="employeeForm.get('image').value"
+                            [src]="employeeForm.get('image').value"
+                            width="100px"
+                            height="100px"
+                        />
+                        <label class="imageLabel" for="image">
+                            {{
+                                employeeForm.get("image").value
+                                    ? ("HOME.CHANGEIAMGE" | translate)
+                                    : ("HOME.IMAGEUPLOAD" | translate)
+                            }}
+                        </label>
+                        <input
+                            type="file"
+                            id="image"
+                            [hidden]="true"
+                            pInputText
+                            [placeholder]="'HOME.IMAGEUPLOAD' | translate"
+                            (change)="onChange($event)"
+                        />
+                    </div>
+                    <div class="field name">
+                        <label for="name">{{
+                            "HOME.EMPNAME" | translate
+                        }}</label>
+                        <input
+                            type="text"
+                            pInputText
+                            id="name"
+                            formControlName="name"
+                        />
+                        <div class="error">
+                            <small
+                                id="name"
+                                class="p-error"
+                                *ngIf="
+                                    employeeForm
+                                        .get('name')
+                                        .hasError('required') &&
+                                    employeeForm.get('name').touched
+                                "
+                                >{{ "HOME.EMPNAMEREQ" | translate }}</small
+                            >
+                        </div>
+                    </div>
+                    <div class="field catrgory">
+                        <label for="Category">{{
+                            "HOME.EMPCATEGORY" | translate
+                        }}</label>
+                        <p-dropdown
+                            class="category_Dropdown"
+                            [options]="Categories"
+                            formControlName="category"
+                            [placeholder]="'HOME.PLACEHOLDER' | translate"
+                        ></p-dropdown>
+                        <div class="error">
+                            <small
+                                id="Category"
+                                class="p-error"
+                                *ngIf="
+                                    employeeForm
+                                        .get('category')
+                                        .hasError('required') &&
+                                    employeeForm.get('category').touched
+                                "
+                                >{{ "HOME.EMPCATREQ" | translate }}</small
+                            >
+                        </div>
+                    </div>
+                    <div class="flex qualification" >
+                        <div class="field qualification col-6">
+                            <label for="qualification">{{ "HOME.EMPQUALIFICATION" | translate }}</label>
+                            <input
+                                type="text"
+                                pInputText
+                                id="qualification"
+                                formControlName="qualification"
+                            />
+                            <div class="error">
+                                <small
+                                    id="qualification"
+                                    class="p-error"
+                                    *ngIf="
+                                        employeeForm
+                                            .get('qualification')
+                                            .hasError('required') &&
+                                        employeeForm.get('qualification').touched
+                                    "
+                                    >{{ "HOME.EMPQUALIFICATIONREQ" | translate }}</small
+                                >
+                            </div>
+                        </div>
+                        <div class="field experience col-6">
+                            <label for="experience">{{ "HOME.EMPEXPERIENCE" | translate }}</label>
+                            <p-inputNumber inputId="integeronly"  id="experience"
+                            formControlName="experience">
+                            </p-inputNumber>
+                            <div class="error">
+                                <small
+                                    id="experience"
+                                    class="p-error"
+                                    *ngIf="
+                                        employeeForm
+                                            .get('experience')
+                                            .hasError('required') &&
+                                        employeeForm.get('experience').touched
+                                    "
+                                    >{{ "HOME.EMPEXPERIENCEREQ" | translate }}</small
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field dob">
+                        <label for="dob">{{ "HOME.EMPDOB" | translate }}</label>
+                        <p-calendar inputId="basic" formControlName="dob" id="dob"  ></p-calendar>
+                        <div class="error">
+                            <small
+                                id="dob"
+                                class="p-error"
+                                *ngIf="
+                                    employeeForm
+                                        .get('dob')
+                                        .hasError('required') &&
+                                    employeeForm.get('dob').touched
+                                "
+                                >{{ "HOME.EMPDOBREQ" | translate }}</small
+                            >
+                        </div>
+                    </div>
+                    <div class="field description">
+                        <label for="description">{{
+                            "HOME.EMPDES" | translate
+                        }}</label>
+                        <textarea
+                            id="description"
+                            pInputTextarea
+                            formControlName="description"
+                            rows="3"
+                            cols="20"
+                        ></textarea>
+                        <div class="error">
+                            <small
+                                id="description"
+                                class="p-error"
+                                *ngIf="
+                                    employeeForm
+                                        .get('description')
+                                        .hasError('required') &&
+                                    employeeForm.get('description').touched
+                                "
+                                >{{ "HOME.EMPDESREQ" | translate }}</small
+                            >
+                        </div>
+                    </div>
+                    <div class="field gender">
+                        <label for="gender">{{
+                            "HOME.GENDER" | translate
+                        }}</label>
+                        <div class="flex">
+                            <div class="p-field-radiobutton">
+                                <p-radioButton
+                                    name="gender"
+                                    formControlName="gender"
+                                    value="Male"
+                                    inputId="male"
+                                    class="px-2"
+                                ></p-radioButton>
+                                <label for="male">{{
+                                    "HOME.MALE" | translate
+                                }}</label>
+                            </div>
+                            <div class="p-field-radiobutton px-3">
+                                <p-radioButton
+                                    name="gender"
+                                    formControlName="gender"
+                                    value="Female"
+                                    inputId="female"
+                                    class="px-2"
+                                ></p-radioButton>
+                                <label for="female">{{
+                                    "HOME.FEMALE" | translate
+                                }}</label>
+                            </div>
+                            <div class="error">
+                                <small
+                                    id="gender"
+                                    class="p-error"
+                                    *ngIf="
+                                        employeeForm
+                                            .get('gender')
+                                            .hasError('required') &&
+                                        employeeForm.get('gender').touched
+                                    "
+                                    >{{
+                                        "HOME.GENDERMESSAGE" | translate
+                                    }}</small
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field skills">
+                        <label for="skills">{{
+                            "HOME.SKILLS" | translate
+                        }}</label>
+                        <div>
+                            <p-multiSelect
+                                formControlName="skills"
+                                [options]="skills"
+                                [placeholder]="
+                                    'HOME.SKILLSPLACEHOLDER' | translate
+                                "
+                            ></p-multiSelect>
+                        </div>
+                        <div class="error">
+                            <small
+                                id="skills"
+                                class="p-error"
+                                *ngIf="
+                                    employeeForm
+                                        .get('skills')
+                                        .hasError('required') &&
+                                    employeeForm.get('skills').touched
+                                "
+                                >{{ "HOME.SKILLSMESSAGE" | translate }}</small
+                            >
+                        </div>
+                    </div>
+                    <div class="field salary">
+                        <label for="salary">{{
+                            "HOME.EMPSALARY" | translate
+                        }}</label>
+                        <p-inputNumber
+                            id="salary"
+                            formControlName="salary"
+                            currency="USD"
+                            locale="en-US"
+                        >
+                        </p-inputNumber>
+                        <div class="error">
+                            <small
+                                id="salary"
+                                class="p-error"
+                                *ngIf="
+                                    employeeForm
+                                        .get('salary')
+                                        .hasError('required') &&
+                                    employeeForm.get('salary').touched
+                                "
+                                >{{ "HOME.EMPSALREQ" | translate }}</small
+                            >
+                        </div>
+                    </div>
+                    <div class="row col-12 flex justify-content-end mr-5px">
+                        <button
+                            pButton
+                            pRipple
+                            [label]="'HOME.CANCLE' | translate"
+                            type="reset"
+                            icon="pi pi-times"
+                            class="p-button-text"
+                            (click)="CancelButton()"
+                        ></button>
+                        <button
+                            pButton
+                            pRipple
+                            [label]="'HOME.SAVE' | translate"
+                            [disabled]="!employeeForm.valid"
+                            type="submit"
+                            icon="pi pi-check"
+                            class="p-button-text"
+                        ></button>
+                    </div>
+                </form>
+            </ng-template>
+        </p-dialog>
+        <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+    </div>
+</div>

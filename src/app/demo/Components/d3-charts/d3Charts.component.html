@@ -1,0 +1,188 @@
+<div>
+    <div class="content loader" *ngIf="IsLoading">
+        <!-- <div>
+            <img src="../../../../assets/images/s-w-png.png" alt="" style="width: 200px; height: 50px" />
+        </div> -->
+        <div class="loading" style="text-align: center" *ngIf="IsLoading">
+            <p>loading</p>
+            <span></span>
+        </div>
+    </div>
+    <div class="grid dashboard">
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.TREELAYOUT" | translate }}</h5>
+                </div>
+                <div class="widget-list h-22rem">
+                    <div id="treelayout" class="h-22rem flex flex-column align-items-center justify-content-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.NETWORKCHART" | translate }}</h5>
+                </div>
+                <div class="widget-list h-22rem">
+                    <div id="networkchart" class="h-22rem flex flex-column align-items-center justify-content-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.SUNBRUST" | translate }}</h5>
+                </div>
+                <div class="widget-list h-30rem">
+                    <div id="sunburstchart" class="h-30rem flex flex-column align-items-center justify-content-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.WORLDMAP" | translate }}</h5>
+                </div>
+                <div class="widget-list h-22rem">
+                    <div id="mapconnection" class="h-22rem flex flex-column align-items-center justify-content-center">
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.BARCHARTVERTICAl" | translate }}</h5>
+                </div>
+                <ul class="widget-list h-22 rem">
+                    <div id="barchartvertical" class="h-22rem"></div>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.AREACHART" | translate }}</h5>
+                </div>
+                <div class="widget-list h-22rem">
+                    <div id="areachart" class="h-22rem"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.BARCHARTSTACKED" | translate }}</h5>
+                </div>
+                <ul class="widget-list h-22rem">
+                    <div id="barchartstacked" class="h-22rem"></div>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.LINE-CHART" | translate }}</h5>
+                </div>
+                <ul class="widget-list h-22rem">
+                    <div id="linechart" class="h-22rem"></div>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.MULTILINECHART" | translate }}</h5>
+                </div>
+                <ul class="widget-list h-22rem">
+                    <div id="multilinechart" class="h-22rem"></div>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.SCATTER-PLOT" | translate }}</h5>
+                </div>
+                <div class="widget-list h-22rem">
+                    <div id="scatterchart" class="h-22rem"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.BARCHARTHORIZONTAL" | translate }}</h5>
+                </div>
+                <ul class="widget-list h-22rem">
+                    <div id="barcharthorizontal" class="h-22rem"></div>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.PIE-CHART" | translate }}</h5>
+                </div>
+                <div class="widget-list h-22rem">
+                    <div id="piechart" class="h-22rem"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.DONUTCHART" | translate }}</h5>
+                </div>
+                <div class="widget-list h-22rem">
+                    <div id="donutwithlegend" class="h-22rem"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.RADIALGUARD" | translate }}</h5>
+                </div>
+                <div class="widget-list h-22rem">
+                    <div id="radialgauge" class="h-22rem"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.HEATMAP" | translate }}</h5>
+                </div>
+                <div class="widget-list h-22rem">
+                    <div id="heatmapchart" class="h-22rem flex flex-column align-items-center justify-content-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.WORDCLOUDMAP" | translate }}</h5>
+                </div>
+                <div class="widget-list h-30rem">
+                    <div id="wordcloud" class="h-30rem flex flex-column align-items-center justify-content-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ "HOME.HIRARCHICALEDGE" | translate }}</h5>
+                </div>
+                <div class="widget-list h-30rem">
+                    <div id="hierarchicaledge"
+                        class="h-30rem flex flex-column align-items-center justify-content-center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

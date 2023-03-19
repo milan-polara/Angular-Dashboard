@@ -1,0 +1,47 @@
+{
+    "appId": "milanpolara.tech",
+    "productName": "Angular13-Dashboard",
+    "copyright": "Milan Polara",
+    "directories": {
+        "app": ".",
+        "output": "out",
+        "buildResources": "build-res"
+    },
+    "files": ["package.json", "dist/dashboard/**/*", "main.js"],
+    "dmg": {
+        "background": null,
+        "backgroundColor": "#ffffff",
+        "window": {
+            "width": "400",
+            "height": "300"
+        },
+        "contents": [
+            {
+                "x": 100,
+                "y": 100
+            },
+            {
+                "x": 300,
+                "y": 100,
+                "type": "link",
+                "path": "/Applications"
+            }
+        ]
+    },
+    "asar": false,
+    "mac": {
+        "icon": "dist/dashboard/assets/images/512.png",
+        "target": "dmg",
+        "category": "public.app-category.utilities"
+    },
+    "win": {
+        "icon": "dist/dashboard/assets/images/256.png",
+        "publisherName": "Milan Polara",
+        "target": "nsis"
+    },
+    "linux": {
+        "icon": "dist/dashboard/assets/images/256.png",
+        "target": ["AppImage", "deb"],
+        "category": "Utility"
+    }
+}

@@ -1,0 +1,190 @@
+<div class="layout-topbar shadow-4">
+    <div class="layout-topbar-left">
+        <a class="layout-topbar-logo" routerLink="/">
+            <!-- <img
+                id="app-logo"
+                src="assets/images/llion-logo-black.png"
+                alt=""
+                style="height: 2.25rem"
+            /> -->
+
+            <span class="text-900 text-2xl"> Milan Polara</span>
+        </a>
+
+        <a
+            class="layout-menu-button shadow-6"
+            (click)="appMain.onMenuButtonClick($event)"
+            pRipple
+        >
+            <i class="pi pi-chevron-right"></i>
+        </a>
+
+        <a
+            class="layout-topbar-mobile-button"
+            (click)="appMain.onTopbarMobileButtonClick($event)"
+            pRipple
+        >
+            <i class="pi pi-ellipsis-v fs-large"></i>
+        </a>
+    </div>
+
+    <div
+        class="layout-topbar-right"
+        [ngClass]="{
+            'layout-topbar-mobile-active': appMain.mobileTopbarActive
+        }"
+    >
+        <div>
+            <div class="layout-topbar-actions-left">
+                <p-megaMenu
+                    [model]="model"
+                    styleClass="layout-megamenu"
+                ></p-megaMenu>
+            </div>
+        </div>
+
+        <div class="flex align-items-center">
+            <!-- <div class="flex">
+                <div class="flex align-items-center">
+                    <p-radioButton
+                        name="layoutMode"
+                        value="light"
+                        [(ngModel)]="app.layoutMode"
+                        inputId="layoutMode1"
+                        (onClick)="onLayoutModeChange($event, 'light')"
+                    ></p-radioButton>
+                    <label
+                        for="layoutMode1"
+                        [ngClass]="{
+                            'ml-2': !app.isRTL,
+                            'mr-2': app.isRTL
+                        }"
+                        >Light</label
+                    >
+                </div>
+                <div
+                    class="flex align-items-center"
+                    [ngClass]="{
+                        'ml-4': !app.isRTL,
+                        'mr-4': app.isRTL
+                    }"
+                >
+                    <p-radioButton
+                        name="layoutMode"
+                        value="dark"
+                        [(ngModel)]="app.layoutMode"
+                        inputId="layoutMode2"
+                        (onClick)="onLayoutModeChange($event, 'dark')"
+                    ></p-radioButton>
+                    <label
+                        for="layoutMode2"
+                        [ngClass]="{
+                            'ml-2': !app.isRTL,
+                            'mr-2': app.isRTL
+                        }"
+                        >Dark</label
+                    >
+                </div>
+            </div> -->
+
+            <!-- <div class="mx-5">
+                <p-inputSwitch
+                    name="layoutMode"
+                    value="light"
+                    [(ngModel)]="app.layoutMode"
+                    inputId="layoutMode1"
+                    (onChange)="onLayoutModeChange($event, 'light')"
+                ></p-inputSwitch>
+                <span>Dark Mode</span>
+            </div> -->
+
+            <div class="mx-5">
+                <p-dropdown
+                    [(ngModel)]="selectedLanguage"
+                    [options]="language"
+                    optionLabel="name"
+                    [showClear]="false"
+                    (onChange)="changeLang()"
+                >
+                    <!-- <ng-template let-language pTemplate="item">
+                        <div class="language-item">
+                            <div>{{ language.name }}</div>
+                        </div>
+                    </ng-template> -->
+                </p-dropdown>
+            </div>
+            <!-- <div class="mx-5">
+                <select
+                    #langSelect
+                    (change)="translate.use(langSelect.value)"
+                    class="select-style"
+                >
+                    <option
+                        *ngFor="let lang of translate.getLangs()"
+                        [value]="lang"
+                        [selected]="changeLang(lang)"
+                    >
+                        {{ lang }}
+                    </option>
+                </select>
+            </div> -->
+
+            <div class="layout-topbar-actions-right">
+                <ul class="layout-topbar-items">
+                    <li class="layout-topbar-item">
+                        <a
+                            class="layout-topbar-action flex flex-row justify-content-center align-items-center px-2 rounded-circle"
+                            (click)="
+                                appMain.onTopbarItemClick($event, 'profile')
+                            "
+                            pRipple
+                        >
+                            <i class="pi pi-user fs-large"></i>
+                        </a>
+                        <ul
+                            class="layout-topbar-action-panel shadow-6"
+                            [@topbarActionPanelAnimation]="'visible'"
+                            *ngIf="appMain.activeTopbarItem === 'profile'"
+                        >
+                            <li class="layout-topbar-action-item">
+                                <a
+                                    class="flex flex-row align-items-center"
+                                    pRipple
+                                >
+                                    <i
+                                        class="pi pi-cog"
+                                        [ngClass]="{
+                                            'mr-2': !app.isRTL,
+                                            'ml-2': app.isRTL
+                                        }"
+                                    ></i>
+
+                                    <span>{{
+                                        "HOME.SETTING" | translate
+                                    }}</span>
+                                </a>
+                            </li>
+                            <li class="layout-topbar-action-item">
+                                <a
+                                    class="flex flex-row align-items-center"
+                                    pRipple
+                                    (click)="appMain.logOut()"
+                                >
+                                    <i
+                                        class="pi pi-power-off"
+                                        [ngClass]="{
+                                            'mr-2': !app.isRTL,
+                                            'ml-2': app.isRTL
+                                        }"
+                                    ></i>
+
+                                    <span>{{ "HOME.LOGOUT" | translate }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
